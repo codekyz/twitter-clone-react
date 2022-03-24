@@ -6,7 +6,7 @@ import Navigation from "./Navigation";
 
 const Router = ({ refreshUser, isLoggedIn, userObj }) => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       {isLoggedIn && <Navigation userObj={userObj} />}
       <Routes>
         {isLoggedIn ? (
