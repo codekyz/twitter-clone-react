@@ -1,16 +1,10 @@
 import { useEffect, useState } from "react";
 import { dbService } from "../fbase";
-import {
-  collection,
-  addDoc,
-  onSnapshot,
-  query,
-  orderBy,
-} from "firebase/firestore";
+import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 import Tweet from "../components/Tweet";
+import TweetForm from "../components/TweetForm";
 
 const Home = ({ userObj }) => {
-  const [tweet, setTweet] = useState("");
   const [tweets, setTweets] = useState([]);
 
   useEffect(() => {
@@ -27,35 +21,9 @@ const Home = ({ userObj }) => {
     });
   }, []);
 
-  const onSubmit = async (event) => {
-    event.preventDefault();
-    await addDoc(collection(dbService, "tweets"), {
-      text: tweet,
-      createAt: Date.now(),
-      creatorId: userObj.uid,
-    });
-    setTweet("");
-  };
-
-  const onChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setTweet(value);
-  };
-
   return (
     <div>
-      <form onSubmit={onSubmit}>
-        <input
-          value={tweet}
-          onChange={onChange}
-          type="text"
-          placeholder="What's on your mind?"
-          maxLength={120}
-        />
-        <input type="submit" value="Tweet" />
-      </form>
+      <TweetForm userObj={userObj} />
       <div>
         {tweets.map((item) => (
           <Tweet
