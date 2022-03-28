@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import Router from "./Router";
-import { authService } from "../fbase";
+import Router from "./routes/Router";
+import { authService } from "./fbase";
+import Footer from "./components/Footer";
 
 function App() {
   const auth = authService;
@@ -42,7 +43,7 @@ function App() {
       ) : (
         "Initializing..."
       )}
-      <footer>&copy; {new Date().getFullYear()} codekyz</footer>
+      <Footer>&copy; {new Date().getFullYear()} codekyz</Footer>
     </>
   );
 }

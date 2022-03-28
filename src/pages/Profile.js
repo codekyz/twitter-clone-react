@@ -8,7 +8,12 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import { authService, dbService } from "../fbase";
+
+const Wrap = styled.section`
+  margin-left: 250px;
+`;
 
 const Profile = ({ refreshUser, userObj }) => {
   const [myTweets, setMyTweets] = useState([]);
@@ -58,7 +63,7 @@ const Profile = ({ refreshUser, userObj }) => {
   };
 
   return (
-    <>
+    <Wrap>
       <form onSubmit={onSubmit}>
         <input
           onChange={onChange}
@@ -69,7 +74,7 @@ const Profile = ({ refreshUser, userObj }) => {
         <input type="submit" value="Update Profile" />
       </form>
       <button onClick={onLogOutClick}>Log Out</button>
-    </>
+    </Wrap>
   );
 };
 export default Profile;

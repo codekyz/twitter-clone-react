@@ -3,6 +3,15 @@ import { dbService, storageService } from "../fbase";
 import { addDoc, collection } from "firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import { useState } from "react";
+import styled from "styled-components";
+
+const Form = styled.form`
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0px;
+  background-color: ${(props) => props.theme.black};
+`;
 
 const TweetForm = ({ userObj }) => {
   const [tweet, setTweet] = useState("");
@@ -58,7 +67,7 @@ const TweetForm = ({ userObj }) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <Form onSubmit={onSubmit}>
       <input
         value={tweet}
         onChange={onChange}
@@ -74,7 +83,7 @@ const TweetForm = ({ userObj }) => {
           <button onClick={onClearAttachment}>Clear</button>
         </div>
       )}
-    </form>
+    </Form>
   );
 };
 

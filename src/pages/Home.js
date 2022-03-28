@@ -3,6 +3,19 @@ import { dbService } from "../fbase";
 import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 import Tweet from "../components/Tweet";
 import TweetForm from "../components/TweetForm";
+import styled from "styled-components";
+
+const Wrap = styled.section`
+  @media (max-width: 480px) {
+    margin-top: 250px;
+  }
+  @media (min-width: 481px) and (max-width: 767px) {
+    margin-top: 250px;
+  }
+  @media (min-width: 767px) {
+    margin-left: 250px;
+  }
+`;
 
 const Home = ({ userObj }) => {
   const [tweets, setTweets] = useState([]);
@@ -22,7 +35,7 @@ const Home = ({ userObj }) => {
   }, []);
 
   return (
-    <div>
+    <Wrap>
       <TweetForm userObj={userObj} />
       <div>
         {tweets.map((item) => (
@@ -33,7 +46,7 @@ const Home = ({ userObj }) => {
           />
         ))}
       </div>
-    </div>
+    </Wrap>
   );
 };
 export default Home;
