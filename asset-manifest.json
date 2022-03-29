@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/twitter-clone-react/static/js/main.ac7c00a7.js",
+    "main.js": "/twitter-clone-react/static/js/main.cdfa7330.js",
     "index.html": "/twitter-clone-react/index.html",
-    "main.ac7c00a7.js.map": "/twitter-clone-react/static/js/main.ac7c00a7.js.map"
+    "main.cdfa7330.js.map": "/twitter-clone-react/static/js/main.cdfa7330.js.map"
   },
   "entrypoints": [
-    "static/js/main.ac7c00a7.js"
+    "static/js/main.cdfa7330.js"
   ]
 }
