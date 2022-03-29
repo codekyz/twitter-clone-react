@@ -7,14 +7,29 @@ import styled from "styled-components";
 
 const Wrap = styled.section`
   @media (max-width: 480px) {
-    margin-top: 250px;
+    margin-top: 230px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
   }
   @media (min-width: 481px) and (max-width: 767px) {
-    margin-top: 250px;
+    margin-top: 230px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 60px;
   }
   @media (min-width: 767px) {
     margin-left: 250px;
+    margin-bottom: 60px;
   }
+`;
+
+const Tweets = styled.div`
+  width: 80%;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Home = ({ userObj }) => {
@@ -37,7 +52,7 @@ const Home = ({ userObj }) => {
   return (
     <Wrap>
       <TweetForm userObj={userObj} />
-      <div>
+      <Tweets>
         {tweets.map((item) => (
           <Tweet
             key={item.id}
@@ -45,7 +60,7 @@ const Home = ({ userObj }) => {
             isOwner={item.creatorId === userObj.uid}
           />
         ))}
-      </div>
+      </Tweets>
     </Wrap>
   );
 };

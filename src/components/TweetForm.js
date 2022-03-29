@@ -10,7 +10,42 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   padding: 20px 0px;
-  background-color: ${(props) => props.theme.black};
+`;
+
+const Input = styled.input`
+  padding: 10px;
+  margin-bottom: 10px;
+  font-family: "GangwonEdu_OTFBoldA";
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: ${(props) => props.theme.gray};
+  &:nth-child(3) {
+    cursor: pointer;
+    background-color: ${(props) => props.theme.coral};
+    color: ${(props) => props.theme.white};
+  }
+`;
+
+const ImgPreview = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  div {
+    display: flex;
+    align-items: center;
+    button {
+      margin-left: 10px;
+      padding: 5px 5px 3px 5px;
+      font-family: "GangwonEdu_OTFBoldA";
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: ${(props) => props.theme.coral};
+      color: ${(props) => props.theme.white};
+    }
+  }
 `;
 
 const TweetForm = ({ userObj }) => {
@@ -68,20 +103,23 @@ const TweetForm = ({ userObj }) => {
 
   return (
     <Form onSubmit={onSubmit}>
-      <input
+      <Input
         value={tweet}
         onChange={onChange}
         type="text"
-        placeholder="What's on your mind?"
+        placeholder="오늘은 어땠나요?"
         maxLength={120}
       />
-      <input onChange={onFileChange} type="file" accept="image/*" />
-      <input type="submit" value="Tweet" />
+      <Input onChange={onFileChange} type="file" accept="image/*" />
+      <Input type="submit" value="보내기" />
       {attachment && (
-        <div>
-          <img src={attachment} alt="pic" width="50px" height="50px" />
-          <button onClick={onClearAttachment}>Clear</button>
-        </div>
+        <ImgPreview>
+          <span>사진 미리보기</span>
+          <div>
+            <img src={attachment} alt="pic" width="50px" height="50px" />
+            <button onClick={onClearAttachment}>사진 지우기</button>
+          </div>
+        </ImgPreview>
       )}
     </Form>
   );

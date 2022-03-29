@@ -2,6 +2,57 @@ import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { deleteObject, ref } from "firebase/storage";
 import { useState } from "react";
 import { dbService, storageService } from "../fbase";
+import styled from "styled-components";
+
+const Wrap = styled.div`
+  display: flex;
+  width: 100%;
+  height: auto;
+`;
+
+const Card = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  margin-bottom: 10px;
+  background-color: ${(props) => props.theme.gray};
+  border-radius: 5px;
+  box-shadow: 0 0 2px ${(props) => props.theme.coral};
+  button,
+  input[type="submit"] {
+    border: 0;
+    padding: 5px 5px 2px 5px;
+    margin-top: 5px;
+    cursor: pointer;
+    font-family: "GangwonEdu_OTFBoldA";
+    border-radius: 5px;
+    &:hover {
+      background-color: ${(props) => props.theme.coral};
+      color: ${(props) => props.theme.white};
+    }
+  }
+`;
+
+const EditForm = styled.form`
+  display: flex;
+  input[type="textarea"] {
+    flex-grow: 1;
+    padding: 5px 5px 2px 5px;
+    margin-bottom: 10px;
+    font-family: "GangwonEdu_OTFBoldA";
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: ${(props) => props.theme.white};
+  }
+  input[type="submit"] {
+    margin-top: 0;
+    margin-bottom: 10px;
+    margin-left: 5px;
+  }
+`;
 
 const Tweet = ({ tweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
@@ -35,26 +86,26 @@ const Tweet = ({ tweetObj, isOwner }) => {
   };
 
   return (
-    <div>
+    <Wrap>
       {editing ? (
-        <>
+        <Card>
           {isOwner && (
             <>
-              <form onSubmit={onSubmit}>
+              <EditForm onSubmit={onSubmit}>
                 <input
-                  type="text"
+                  type="textarea"
                   onChange={onChange}
                   value={newTweet}
                   required
                 />
                 <input type="submit" value="Update" />
-              </form>
-              <button onClick={toggleEditing}>Cancle</button>
+              </EditForm>
+              <button onClick={toggleEditing}>취소</button>
             </>
           )}
-        </>
+        </Card>
       ) : (
-        <>
+        <Card>
           <h4>{tweetObj.text}</h4>
           {tweetObj.attachmentUrl && (
             <img
@@ -66,13 +117,13 @@ const Tweet = ({ tweetObj, isOwner }) => {
           )}
           {isOwner && (
             <>
-              <button onClick={onDeleteClick}>Delete</button>
-              <button onClick={toggleEditing}>Edit</button>
+              <button onClick={toggleEditing}>수정하기</button>
+              <button onClick={onDeleteClick}>삭제하기</button>
             </>
           )}
-        </>
+        </Card>
       )}
-    </div>
+    </Wrap>
   );
 };
 
