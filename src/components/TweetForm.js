@@ -10,20 +10,19 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   padding: 20px 0px;
-`;
-
-const Input = styled.input`
-  padding: 10px;
-  margin-bottom: 10px;
-  font-family: "GangwonEdu_OTFBoldA";
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  background-color: ${(props) => props.theme.gray};
-  &:nth-child(3) {
-    cursor: pointer;
-    background-color: ${(props) => props.theme.coral};
-    color: ${(props) => props.theme.white};
+  input {
+    padding: 10px;
+    margin-bottom: 10px;
+    font-family: "GangwonEdu_OTFBoldA";
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: ${(props) => props.theme.gray};
+    &:nth-child(3) {
+      cursor: pointer;
+      background-color: ${(props) => props.theme.coral};
+      color: ${(props) => props.theme.white};
+    }
   }
 `;
 
@@ -103,15 +102,15 @@ const TweetForm = ({ userObj }) => {
 
   return (
     <Form onSubmit={onSubmit}>
-      <Input
+      <input
         value={tweet}
         onChange={onChange}
         type="text"
         placeholder="오늘은 어땠나요?"
         maxLength={120}
       />
-      <Input onChange={onFileChange} type="file" accept="image/*" />
-      <Input type="submit" value="보내기" />
+      <input onChange={onFileChange} type="file" accept="image/*" />
+      <input type="submit" value="보내기" />
       {attachment && (
         <ImgPreview>
           <span>사진 미리보기</span>
